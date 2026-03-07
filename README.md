@@ -2,6 +2,7 @@
 
 ThreeDimensions is a programmable 3D modeling library for Python, backed by a C++ geometry kernel for heavy mesh operations.
 
+
 **Version: 1.1.1**
 
 ## Overview
@@ -31,7 +32,7 @@ ThreeDimensions is a programmable 3D modeling library for Python, backed by a C+
 ## Installation
 
 ```bash
-pip install .
+pip install pip install threedimensions==1.1.1
 ```
 
 Optional viewer dependencies:
@@ -87,10 +88,7 @@ with td.viewer() as scene:
 - `cpp_core/`: C++ geometry kernel, topology ops, primitives, modifiers, sculpt tools, Python bindings
 - `python/threedimensions/`: high-level Python API wrappers, fallback implementations, procedural nodes, viewer
 
-## Screenshots
-
-See exported models in `examples/*.obj` and render previews from the viewer. Add your own screenshots under `docs/images/` and embed them in this section.
-
 ## License
 
 MIT
+
