@@ -1,0 +1,105 @@
+Metadata-Version: 2.4
+Name: threedimensions
+Version: 1.1.1
+Summary: Professional Hybrid 3D Modeling Engine (C++ Core + Python API)
+Author: LegedsDaD
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+
+# ThreeDimensions
+
+ThreeDimensions is a programmable 3D modeling library for Python, backed by a C++ geometry kernel for heavy mesh operations.
+
+**Version: 1.1.1**
+
+## Overview
+
+- Python-first API (`import threedimensions as td`)
+- C++ core for mesh math/topology/modifiers when available
+- Pure-Python fallback so the package remains usable without compiling native code
+- Half-edge/topology-oriented editing workflow with sculpt, modifiers, curves, nodes, UV tools, and export
+
+## Feature Highlights
+
+- Transform system: move/rotate/scale, pivot modes, snapping, mirror transform, proportional falloff
+- Selection: vertex/edge/face, loop/ring, box/circle/lasso, select similar
+- Editing: extrude, inset, bevel, bridge, fill, grid fill, subdivide, loop cut, spin, screw, solidify, wireframe
+- Deformation: bend, twist, taper, stretch, shear, warp
+- Symmetry: mirror and symmetrize helpers
+- Sculpt: draw/clay/inflate/smooth/grab/pinch/crease/mask style brush workflow + filters
+- Remesh/reduction: voxel remesh, quad remesh, decimate
+- Primitives: cube, sphere, UV sphere, icosphere, cylinder, cone, torus, plane, grid
+- Curves: Bezier, NURBS-style fallback, lathe, curve-to-mesh
+- UV: unwrap, smart UV project, project from view, seams
+- Retopo helpers: shrinkwrap, poly build, relax topology
+- Modifier stack: subdivision, mirror, array, solidify, boolean, decimate, lattice
+- Procedural NodeGraph API
+- Optional OpenGL viewer (`td.viewer(mesh)` or `with td.viewer() as scene`)
+
+## Installation
+
+```bash
+pip install .
+```
+
+Optional viewer dependencies:
+
+```bash
+pip install glfw PyOpenGL
+```
+
+## Quick Start
+
+```python
+import threedimensions as td
+
+mesh = td.create_cube(1.0)
+mesh.extrude(distance=0.2)
+mesh.bevel(width=0.05)
+mesh.subdivide(1)
+mesh.save("model.obj")
+```
+
+## Geometry Nodes (Programmable)
+
+```python
+import threedimensions as td
+
+graph = td.NodeGraph()
+cube = graph.node("Cube", size=1.0)
+subdiv = graph.node("Subdivision", levels=2)
+extrude = graph.node("Extrude", distance=0.25)
+
+graph.connect(cube, subdiv)
+graph.connect(subdiv, extrude)
+
+mesh = graph.evaluate()
+mesh.save("graph.obj")
+```
+
+## Viewer
+
+```python
+import threedimensions as td
+
+mesh = td.create_torus()
+td.viewer(mesh)  # blocking preview
+
+with td.viewer() as scene:
+    scene.update(mesh)
+    scene.run()
+```
+
+## Architecture
+
+- `cpp_core/`: C++ geometry kernel, topology ops, primitives, modifiers, sculpt tools, Python bindings
+- `python/threedimensions/`: high-level Python API wrappers, fallback implementations, procedural nodes, viewer
+
+## Screenshots
+
+See exported models in `examples/*.obj` and render previews from the viewer. Add your own screenshots under `docs/images/` and embed them in this section.
+
+## License
+
+MIT
