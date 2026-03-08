@@ -3,7 +3,7 @@ ThreeDimensions v1.1.1
 Hybrid 3D modeling engine with C++ kernel and Python API.
 """
 
-__version__ = "1.1.1"
+__version__ = "1.0.0"
 
 from .mesh import (
     CORE_AVAILABLE,
@@ -51,3 +51,4 @@ __all__ = [
     "NodeGraph",
     "viewer",
 ]
+
