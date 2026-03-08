@@ -1,25 +1,19 @@
 #include "SymmetryModifier.h"
 #include "../math/Vector3.h"
-using ThreeDimensions::Math::Vec3;
+
+using ThreeDimensions::Math::Vector3;
 
 void SymmetryModifier::apply(Mesh& mesh)
 {
-    size_t originalCount = mesh.vertices.size();
+    std::vector<Vertex*> original = mesh.vertices;
 
-    for (size_t i = 0; i < originalCount; i++)
+    for (auto v : original)
     {
-        Vertex* v = mesh.vertices[i];
         Vector3 mirrored = v->position;
-
-        if (axis == 'x') mirrored.x = -mirrored.x;
-        if (axis == 'y') mirrored.y = -mirrored.y;
-        if (axis == 'z') mirrored.z = -mirrored.z;
+        mirrored.x *= -1;
 
         mesh.createVertex(mirrored);
     }
 
     mesh.buildTwins();
-
 }
-
-
