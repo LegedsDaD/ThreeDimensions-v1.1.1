@@ -10,4 +10,5 @@ public:
     }
 
     void apply(Mesh& mesh) override;
-}; #pragma once
+};
+
