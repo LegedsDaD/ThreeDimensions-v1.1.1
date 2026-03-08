@@ -1,8 +1,13 @@
 #pragma once
 #include "../math/Vector3.h"
 
-struct Vertex {
-    Vector3 position;
+using ThreeDimensions::Math::Vec3;
 
-    Vertex(const Vector3& pos) : position(pos) {}
+struct HalfEdge;
+
+struct Vertex {
+    Vec3 position;
+    HalfEdge* edge = nullptr;
+
+    Vertex(const Vec3& pos) : position(pos) {}
 };
