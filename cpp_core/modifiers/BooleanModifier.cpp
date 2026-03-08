@@ -1,5 +1,7 @@
 #include "BooleanModifier.h"
 
+using ThreeDimensions::Math::Vec3;
+
 void BooleanModifier::apply(Mesh& mesh)
 {
     if (!operand) return;
@@ -23,4 +25,5 @@ void BooleanModifier::apply(Mesh& mesh)
             }
         }
     }
+
 }
