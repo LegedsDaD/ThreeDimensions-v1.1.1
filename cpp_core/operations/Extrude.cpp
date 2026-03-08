@@ -1,5 +1,5 @@
 #include "Extrude.h"
-
+#include "../math/Vector3.h"
 using ThreeDimensions::Math::Vec3;
 
 void extrudeFace(Mesh& mesh, Face* face, double distance)
@@ -38,4 +38,5 @@ void extrudeFace(Mesh& mesh, Face* face, double distance)
     mesh.buildTwins();
 
 }
+
 
