@@ -1,5 +1,5 @@
 #include "Bevel.h"
-
+#include "../math/Vector3.h"
 using ThreeDimensions::Math::Vec3;
 
 void bevelEdge(Mesh& mesh, Edge* edge, double width)
@@ -18,4 +18,5 @@ void bevelEdge(Mesh& mesh, Edge* edge, double width)
     twin->vertex->position = twin->vertex->position - offset;
 
 }
+
 
