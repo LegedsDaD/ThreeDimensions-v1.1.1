@@ -11,7 +11,7 @@ else:
 
 ext_modules = [
     Extension(
-        "cpp_core",
+        "_threedimensions_core",
         ["cpp_core/bindings.cpp"],
         include_dirs=[pybind11.get_include()],
         language="c++",
