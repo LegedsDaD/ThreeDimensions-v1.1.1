@@ -1,5 +1,7 @@
 #include "SymmetryModifier.h"
 
+using ThreeDimensions::Math::Vec3;
+
 void SymmetryModifier::apply(Mesh& mesh)
 {
     size_t originalCount = mesh.vertices.size();
@@ -7,7 +9,7 @@ void SymmetryModifier::apply(Mesh& mesh)
     for (size_t i = 0; i < originalCount; i++)
     {
         Vertex* v = mesh.vertices[i];
-        Vector3 mirrored = v->position;
+        Vec3 mirrored = v->position;
 
         if (axis == 'x') mirrored.x = -mirrored.x;
         if (axis == 'y') mirrored.y = -mirrored.y;
@@ -17,4 +19,5 @@ void SymmetryModifier::apply(Mesh& mesh)
     }
 
     mesh.buildTwins();
+
 }
