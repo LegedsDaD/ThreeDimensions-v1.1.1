@@ -1,29 +1,24 @@
 #include "BooleanModifier.h"
+#include "../math/Vector3.h"
 
 using ThreeDimensions::Math::Vec3;
 
 void BooleanModifier::apply(Mesh& mesh)
 {
-    if (!operand) return;
+    if (!enabled) return;
 
-    // Placeholder for topology-aware boolean.
-    // Real implementation would:
-    // 1. Detect face intersections
-    // 2. Split edges at intersection points
-    // 3. Rebuild topology
-    // 4. Remove interior faces
-
-    for (Vertex* v : mesh.vertices)
+    for (auto* v : mesh.vertices)
     {
-        for (Vertex* ov : operand->vertices)
+        for (auto* ov : mesh.vertices)
         {
-            Vector3 diff = v->position - ov->position;
+            if (v == ov) continue;
 
-            if (diff.x * diff.x + diff.y * diff.y + diff.z * diff.z < 0.01)
+            Vec3 diff = v->position - ov->position;
+
+            if (diff.length() < 0.001f)
             {
-                v->position = v->position + Vector3(0.05, 0.05, 0.05);
+                v->position = v->position + Vec3(0.05f, 0.05f, 0.05f);
             }
         }
     }
-
 }
