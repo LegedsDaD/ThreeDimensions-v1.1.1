@@ -3,8 +3,8 @@ import pybind11
 
 ext_modules = [
     Extension(
-        "threedimensions._core",
-        ["cpp/core.cpp"],  # change to your real C++ file path
+        "cpp_core",
+        ["cpp_core/bindings.cpp"],  
         include_dirs=[pybind11.get_include()],
         language="c++",
     ),
